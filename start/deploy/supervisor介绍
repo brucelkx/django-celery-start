@@ -1,0 +1,57 @@
+# 安装
+yum install supervisor
+sudo apt install supervisor
+systemctl enable supervisor
+
+# 配置
+# 项目名称
+[program:myWs]
+# 项目路径
+directory=/root/ws/myWs
+# 启动命令（python解释器路径，项目入口文件）
+command=/root/anaconda2/envs/tornado/bin/python main.py
+# 在supervisord启动的时候也自动启动
+autostart=true
+# 程序退出后自动重启,可选值：[unexpected,true,false]，默认为unexpected，表示进程意外杀死后才重启
+autorestart=false
+# 启动失败自动重试次数，默认是3
+startretries=3
+# 启动10秒后没有异常退出，就表示进程正常启动了，默认为1秒
+startsecs=1
+# 进程启动优先级，默认999，值小的优先启动
+priority=999
+#
+# stderr_logfile=/root/ws/err.log
+# stdout_logfile=/root/ws/out.log
+# 意为不记录日志
+stderr_logfile=/dev/null
+stdout_logfile=/dev/null
+
+user = root
+redirect_stderr = true
+asgfjfghfc_maxbytes = 20M
+stdout_logfile_backups = 20
+
+
+# 常用命令
+# 关闭进程
+ps -ef | grep supervisord | grep -v grep | awk '{print $2}' | xargs kill
+
+# 启动进程
+supervisord -c /etc/supervisor/supervisord.conf
+
+# 项目状态
+supervisorctl status
+
+# 重启项目 stop/start/restart
+supervisorctl restart all/myWs
+
+# 加载新增配置
+supervisorctl reread
+
+# 更新配置
+supervisorctl update
+
+# 重载任务
+supervisorctl reload
+
