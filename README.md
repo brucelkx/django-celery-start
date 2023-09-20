@@ -4,9 +4,9 @@
   - 要正常启动需要安装redis 和 mysql数据
 ### 如何添加任务
   - 添加周期任务
-  ![](screenshot/01.png)
-  ![](screenshot/02.png)
-  ![](screenshot/03.png)
+  ![](/screenshot/01.png)
+  ![](/screenshot/02.png)
+  ![](/screenshot/03.png)
 
 ### Linux下测试，启动Celery
  - Celery -A demo.demo_task worker -l INFO
