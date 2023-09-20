@@ -4,9 +4,9 @@
   - 要正常启动需要安装redis 和 mysql数据
 ### 如何添加任务
   - 添加周期任务
-  ![](https://github.com/brucelkx/django-celery-start/blob/main/start/screenshot)
-  ![](/screenshot/02.png)
-  ![](/screenshot/03.png)
+  ![](https://github.com/brucelkx/django-celery-start/blob/main/start/screenshot/01.png)
+  ![](https://github.com/brucelkx/django-celery-start/blob/main/start/screenshot/02.png)
+  ![](https://github.com/brucelkx/django-celery-start/blob/main/start/screenshot/03.png)
 
 ### Linux下测试，启动Celery
  - Celery -A demo.demo_task worker -l INFO
@@ -17,7 +17,7 @@
 - celery --broker=redis://127.0.0.1:6379/0 flower
 - 访问：http://127.0.0.1:5555/
 #启动 beat Scheduler
-- celery -A trip.cms_job beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+- celery -A demo.demo_job beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
 ### 环境部署 linux centos 安装必要的依赖包：
 - 安装supervisor
