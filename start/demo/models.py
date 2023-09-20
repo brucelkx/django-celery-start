@@ -16,9 +16,11 @@ class GitHubUser(models.Model):
         verbose_name = "GitHub用户信息"
         verbose_name_plural = 'GitHub用户信息'
 
+    def __str__(self):
+        return self.login
 
 class Repos(models.Model):
-    user = models.ForeignKey(GitHubUser, related_name="repos", on_delete=models.CASCADE)
+    user = models.ForeignKey(GitHubUser, related_name="repos", on_delete=models.CASCADE,verbose_name="用户名")
     name = models.CharField(max_length=100, verbose_name="仓库名称")
 
     class Meta:

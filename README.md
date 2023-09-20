@@ -1,29 +1,43 @@
 # django-celery-start
   a demo or sample of django + celery for beginner。一个简单使用django+celery的入门例子。
-  - 本示例使用的是消息队列用的redis ，数据库用的mysql。
-  - 要正常启动需要安装redis 和 mysql数据
+  本此次示例创建了三个任务：获取github用户task，获取用的某个用户的github仓库task，
+  以chain的方式调用task（可以控制任务的执行先后顺序，该方式在复杂的项目中会很有用）。
+  
+  - 环境准备：
+    - 本示例使用的是消息队列用的redis ，数据库用的mysql。
+    - 要正常启动需要安装redis 和 mysql数据
 ### 如何添加任务
   - 添加周期任务
-    <div align="center"> <img src="./start/screenshot/01.png" width = 300 height = 200 /> </div>
-    <div align="center"> <img src="./start/screenshot/02.png" width = 300 height = 200 /> </div>
-    <div align="center"> <img src="./start/screenshot/03.png" width = 300 height = 200 /> </div>
+    - <div > <img src="./start/screenshot/01.png" width = 300 height = 200 /> </div>
+    - <div > <img src="./start/screenshot/02.png" width = 300 height = 200 /> </div>
+    - <div > <img src="./start/screenshot/03.png" width = 300 height = 200 /> </div>
+  - 添加任务
+    - <div > <img src="./start/screenshot/06.png" width = 300 height = 200 /> </div>
+    - <div > <img src="./start/screenshot/07.png" width = 300 height = 200 /> </div>
+  - 启动celery task
+    - <div > <img src="./start/screenshot/04.png" width = 300 height = 200 /> </div>
+  - 启动定时 beat
+    - <div > <img src="./start/screenshot/05.png" width = 300 height = 200 /> </div> 
+  - 运行结果 
+    - <div > <img src="./start/screenshot/08.png" width = 300 height = 200 /> </div> 
+
 ### Linux下测试，启动Celery
  - Celery -A demo.demo_task worker -l INFO
 ### Windows下测试，启动Celery
  - Celery -A demo.demo_task worker -l INFO -P eventlet
 
 ### 启动flower 监控celery broker
-- celery --broker=redis://127.0.0.1:6379/0 flower
-- 访问：http://127.0.0.1:5555/
+  - celery --broker=redis://127.0.0.1:6379/0 flower
+  - 访问：http://127.0.0.1:5555/
 #启动 beat Scheduler
-- celery -A trip.cms_job beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+  - celery -A demo.demo_job beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
 ### 环境部署 linux centos 安装必要的依赖包：
-- 安装supervisor
-- 安装依赖包：
-  - pip install -r requirements.txt 
-- 注意：
-  - uwsgi 通过pip 去安装
+  - 安装supervisor
+  - 安装依赖包：
+    - pip install -r requirements.txt 
+  - 注意：
+    - uwsgi 通过pip 去安装
 ### RUN SYSTEM  
 #### 用supervisor 来管理所有服务器的启动和关闭
 - 本系统运行相关的服务：

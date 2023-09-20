@@ -33,17 +33,18 @@ def hello(self):
 
 
 @demo_task.task(bind=True, max_retrie=MAX_TRY_TIME)
-def fetch_github_user_list(self):
+def fetch_github_user_list(self, param1=""):
     u = GitHub()
     u.get_user_list()
 
 
 @demo_task.task(bind=True, max_retrie=MAX_TRY_TIME)
-def fetch_github_user_repos(self):
+def fetch_github_user_repos(self, param1=""):
     u = GitHub()
     u.get_user_repo_list()
 
 
 @demo_task.task(bind=True, max_retrie=MAX_TRY_TIME)
 def chain_fetch_github_user_info(self):
-    chain(fetch_github_user_list.s(), fetch_github_user_repos.s()).get()
+    res = chain(fetch_github_user_list.s(), fetch_github_user_repos.s())()
+    res.get()
