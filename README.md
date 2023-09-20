@@ -4,7 +4,7 @@
   - 要正常启动需要安装redis 和 mysql数据
 ### 如何添加任务
   - 添加周期任务
-  ![](/screenshot/01.png)
+  ![](https://github.com/brucelkx/django-celery-start/blob/main/start/screenshot)
   ![](/screenshot/02.png)
   ![](/screenshot/03.png)
 
